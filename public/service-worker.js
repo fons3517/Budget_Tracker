@@ -71,7 +71,9 @@ self.addEventListener("fetch" /*any request that goes to the browser*/, function
   // if the request is not for the API, serve static assets using "offline-first" approach.
   // see https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook#cache-falling-back-to-network
   evt.respondWith(
-    caches.match(evt.request).then(function (response) {
+    caches.open('my-site').then(function (response) {
+
+    })(evt.request).then(function (response) {
       return response || fetch(evt.request);
     })
   );
