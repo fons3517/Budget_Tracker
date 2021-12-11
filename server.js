@@ -22,13 +22,13 @@ mongoose.connect(
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
-    useFindAndModify: false
+    useFindAndModify: true,
   }
 );
 
 
 // routes
-app.use(require("./routes/api.js"));
+app.use("/", require("./routes/api.js"));
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
