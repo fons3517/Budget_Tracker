@@ -53,8 +53,21 @@
 
 			<canvas id="myChart"></canvas>
 		</div>
-
+		<script src="./index.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-		<script src="dist/bundle.js"></script>
+		<!--<script src="dist/bundle.js"></script>-->
+		<script>
+			if ("serviceWorker" in navigator) {
+				navigator.serviceWorker
+					.register("service-worker.js")
+					.then((registry) => {
+						console.log("Service worker is now registered");
+					})
+					.catch((err) => {
+						console.log("Service worker has not been registered!");
+						console.log(err);
+					});
+			}
+		</script>
 	</body>
 </html>

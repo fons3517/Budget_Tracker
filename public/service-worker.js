@@ -3,15 +3,12 @@ const DATA_CACHE_NAME = 'data-cache-v1';
 
 const FILES_TO_CACHE = [
   "/",
-  "/transaction.js",
   "/icons/icon-192x192.png",
   "/icons/icon-512x512.png",
   "/db.js",
-  "/index.html",
   "/index.js",
   "/manifest.webmanifest",
   "/styles.css",
-  "/api.js",
 ];
 
 // install
@@ -46,7 +43,7 @@ self.addEventListener("activate", function (evt) {
 // fetch
 self.addEventListener("fetch" /*any request that goes to the browser*/, function (evt) {
   // cache successful requests to the API
-  if (evt.request.url.includes("/api/")) {
+  if (evt.request.url.startsWith("/api/")) {
     evt.respondWith(
       caches.open(DATA_CACHE_NAME).then(cache => {
         return fetch(evt.request)
@@ -71,10 +68,14 @@ self.addEventListener("fetch" /*any request that goes to the browser*/, function
   // if the request is not for the API, serve static assets using "offline-first" approach.
   // see https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook#cache-falling-back-to-network
   evt.respondWith(
-    caches.open('my-site').then(function (response) {
-
-    })(evt.request).then(function (response) {
-      return response || fetch(evt.request);
+    caches.open('BudgetTracker').then(function (cache) {
+      return cache.match(e.request).then(function (response) {
+        return response ||
+          fetch(e.request).then(function (response) {
+            cache.put(e.request, response.clone());
+            return response;
+          })
+      });
     })
   );
 });
