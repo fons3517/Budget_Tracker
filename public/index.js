@@ -1,3 +1,5 @@
+const e = require("express");
+
 let transactions = [];
 let myChart;
 
@@ -18,7 +20,8 @@ function populateTotal() {
   // reduce transaction amounts to a single total value
   let total = transactions.reduce((total, t) => {
     return total + parseInt(t.value);
-  }, 0);
+  }, 0)
+    .toFixed(2);
 
   let totalEl = document.querySelector("#total");
   totalEl.textContent = total;
@@ -68,13 +71,15 @@ function populateChart() {
     type: 'line',
     data: {
       labels,
-      datasets: [{
-        label: "Total Over Time",
-        fill: true,
-        backgroundColor: "#6666ff",
-        data
-      }]
-    }
+      datasets: [
+        {
+          label: "Total Over Time",
+          fill: true,
+          backgroundColor: "#6666ff",
+          data
+        },
+      ],
+    },
   });
 }
 
@@ -146,9 +151,11 @@ function sendTransaction(isAdding) {
 }
 
 document.querySelector("#add-btn").onclick = function () {
+  e.preventDefault();
   sendTransaction(true);
 };
 
 document.querySelector("#sub-btn").onclick = function () {
+  e.preventDefault();
   sendTransaction(false);
 };

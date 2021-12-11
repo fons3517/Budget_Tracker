@@ -5,11 +5,13 @@ const FILES_TO_CACHE = [
   "/",
   "/transaction.js",
   "/icons/icon-192x192.png",
-  "/icons/icon-72x72.png",
+  "/icons/icon-512x512.png",
+  "/db.js",
+  "/index.html",
   "/index.js",
-  "/indexedDb.js",
-  "/styles.css",
   "/manifest.webmanifest",
+  "/styles.css",
+  "/api.js",
 ];
 
 // install
