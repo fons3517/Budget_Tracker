@@ -33,5 +33,5 @@ Alfonso Robles
 
 [BudgetTracker](https://budgettracker1707.herokuapp.com/)
 
-![BudgetTracker Main Page](./images/MainPage.jpg);
-![BudgetTrackerAddFunds](./images/AddFunds.jpg);
+![BudgetTracker Main Page](./images/MainPage.jpg)
+![BudgetTrackerAddFunds](./images/AddFunds.jpg)
