@@ -35,3 +35,4 @@ Alfonso Robles
 
 ![BudgetTracker Main Page](./images/MainPage.jpg)
 ![BudgetTrackerAddFunds](./images/AddFunds.jpg)
+![BudgetTrackerSubtractFunds](./images/Transactions.jpg)
