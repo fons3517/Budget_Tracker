@@ -29,7 +29,7 @@ self.addEventListener("activate", function (evt) {
   const current = [CACHE_NAME, DATA_CACHE_NAME];
   evt.waitUntil(
     caches.keys().then((cacheName) => {
-      return keyList.filter((cacheName) => !current.includes(cacheName));
+      return cacheName.filter((cacheName) => !current.includes(cacheName));
     })
       .then((deletedCaches) => {
         return Promise.all(
@@ -71,8 +71,8 @@ self.addEventListener("fetch", function (evt) {
       }
 
       return caches.open(DATA_CACHE_NAME).then((cache) => {
-        return fetch(e.request).then((response) => {
-          return cache.put(e.request, response.clone()).then(() => {
+        return fetch(evt.request).then((response) => {
+          return cache.put(evt.request, response.clone()).then(() => {
             return response;
           })
         });
